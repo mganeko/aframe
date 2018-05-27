@@ -21,7 +21,7 @@
   Room:<input id="roomname_text" type="text" size="32" value="test_go_room"></input>&nbsp;
   SkyWay API Key:<input id="api_key_text" type="text" size="32"></input>
   <br />
-  <button onclick="getDevice()">Get Devices</button>
+  <button id="get_device_button" onclick="getDevice()">Get Devices</button>
   Video:
   <select id="videoSource"></select>
   &nbsp;VideoSize:
@@ -37,11 +37,11 @@
   Audio:
   <select id="audioSource"></select>
   <br />
-  <button type="button" onclick="startVideo();">Start Video</button>
-  <button type="button" onclick="stopVideo();">Stop Video</button>
+  <button id="start_video_button" type="button" onclick="startVideo();">Start Video</button>
+  <button id="stop_video_button" type="button" onclick="stopVideo();">Stop Video</button>
   &nbsp;
-  <button type="button" onclick="joinRoom();">Connect</button>
-  <button type="button" onclick="leaveRoom();">Disconnect</button>
+  <button id="join_room_button" type="button" onclick="joinRoom();">Connect</button>
+  <button  id="leave_room_button" type="button" onclick="leaveRoom();">Disconnect</button>
   <div>
     <video id="local_video" autoplay style="width: 320px; height: 180px; border: 1px solid black;"></video>
   </div>
@@ -147,6 +147,7 @@
       meshRoom.on('open', function() {
         console.log('joined the room:' + roomName);
         showGoUrl(roomName);
+        updateButtons();
       });
       meshRoom.on('stream', function(stream) {
         let remoteId = stream.peerId;
@@ -158,14 +159,22 @@
     });
 
     // -- kick to play in iOS 11 Safari --
-    setTimeout(playAllRemoteVideo, 1000);
+    //setTimeout(playAllRemoteVideo, 1000);
   }
 
   function leaveRoom() {
     if (meshRoom) {
        meshRoom.close();
+       meshRoom = null;
     }
+    if (peer) {
+      peer.disconnect();
+      peer.destroy();
+      peer = null;
+    }
+
     removeAllVideo();
+    updateButtons();
   }
 
   // ---- for multi party -----
@@ -318,6 +327,7 @@
           }
         }
       });
+      updateButtons();
     })
     .catch(function(err) {
       console.error("getDevices ERROR:", err);
@@ -372,6 +382,7 @@
     .then(function (stream) { // success
       localStream = stream;
       playVideo(localVideo, stream);
+      updateButtons();
     }).catch(function (error) { // error
       console.error('getUserMedia error:', error);
       return;
@@ -383,6 +394,7 @@
     pauseVideo(localVideo);
     stopLocalStream(localStream);
     localStream = null;
+    updateButtons();
   }
 
   function stopLocalStream(stream) {
@@ -437,7 +449,57 @@
     }
   }
 
+  function updateButtons() {
+    // -- check device list ready --
+    if (videoSelect.options.length == 0) {
+      disableElement("start_video_button");
+      disableElement("stop_video_button");
+      disableElement("join_room_button");
+      disableElement("leave_room_button");
+      return;
+    }
+
+    // -- check localStream ready --
+    if (! localStream) {
+      enableElement("start_video_button");
+      disableElement("stop_video_button");
+      disableElement("join_room_button");
+      disableElement("leave_room_button");
+      return;
+    }
+    else {
+      disableElement("start_video_button");
+    }
+
+    // -- check already in room --
+    if (! meshRoom) {
+      enableElement("stop_video_button");
+      enableElement("join_room_button");
+      disableElement("leave_room_button");
+    }
+    else {
+      disableElement("stop_video_button");
+      disableElement("join_room_button");
+      enableElement("leave_room_button");
+    }
+  }
+
+  function enableElement(id) {
+    let element = document.getElementById(id);
+    if (element) {
+      element.removeAttribute('disabled');
+    }
+  }
+
+  function disableElement(id) {
+    let element = document.getElementById(id);
+    if (element) {
+      element.setAttribute('disabled', '1');
+    }    
+  }
+
   // ----- init ------
+  updateButtons();
   getApiKeyFromURL();
   setInitialRoomName();
   getRoomFromURL();
