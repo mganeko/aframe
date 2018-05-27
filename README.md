@@ -62,6 +62,42 @@ WebRTCを利用した360リアルタイム動画通信です。下記の製品�
 * 360度モードを抜けるには コントローラの[戻る]ボタンを押します
 * Skywayの接続を切る処理は未実装です。リロードするか、他のページに移動してください
 
+### How to use sample
+
+Please try on [GitHub pages ](https://mganeko.github.io/aframe/).
+You need RICOH THETA V and Oculus Go (or other WebVR ready browser).
+
+#### Stream 360 realtime video from PC
+* Connect RICOH THEATA V to your PC with USB, then start as Live mode.
+* Open with desktop Chrome: [https://mganeko.github.io/aframe/pc.html](https://mganeko.github.io/aframe/pc.html)
+  * Room name will be decided by random. You can modify room name if you want.
+* Click [Get Devices] button, then list of video/audio devices will be made.
+  * Please allow access to camera / microphone.
+  * THEATA V will be selected if exists.
+* Click [Start Video] button.
+  * Video / Audio will be captured, and shown in the browser.
+* Click [Connect] Button.
+  * Connect to SkyWay, then join to the specified room.
+  * URL for Oculus Go will be appear below video.
+  * Open this URL with Oculus Go browser (or other WebVR ready browser), to watch 360 realtime video. (See next section)
+
+* To stop streaming, click [Disconnect] button, then click [Stop Video] button.
+
+#### Watch 360 realtime video with Oculus Go
+* Start Oculus Go browser (or other WebVR ready browser).
+* Open the URL which shown in the streaming PC.
+  * It is better to bookmark [https://mganeko.github.io/aframe/go.html&room=](https://mganeko.github.io/aframe/go.html&room=) in advance. Then add room name at the end of URL.
+* Loading will take a while.
+  * When A-FRAME is ready, a message will appear in the center of browser window.
+* Click the browser windows (point and trigger Oculus Go controller).
+  * Connect to SkyWay, then join to the specified room.
+  * 360 realtime video form the PC will be played in Oculus Go Browser.
+* Click VR mode button at the right bottom corner (point and trigger Oculus Go controller), then enter 360 VR mode.
+  * You can look around with Oculus Go.
+
+* To exit 360 VR mode, push [back] button of Oculus Go controller.
+* To disconnect from Skyway, please reload or move to other page.
+
 
 ### Source code / ソーコード
 

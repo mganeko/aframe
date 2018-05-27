@@ -91,7 +91,62 @@
           <li>Skywayの接続を切る処理は未実装です。リロードするか、他のページに移動してください</li>
         </ul>
         
+        <h3>How to use sample</h3> 
+        
+        Please try on <a target="_blank" href="https://mganeko.github.io/aframe/">GitHub pages (https://mganeko.github.io/aframe/)</a><br/>
+        You need RICOH THETA V and Oculus Go (or other WebVR ready browser).
+        
+        <h4>Stream 360 realtime video from PC</h4>
+        <ul>
+          <li>Connect RICOH THEATA V to your PC with USB, then start as Live mode.</li>
+          <li>Open with desktop Chrome: <a target="_blank" href="https://mganeko.github.io/aframe/pc.html">https://mganeko.github.io/aframe/pc.html</a>
+            <ul><li>Room name will be decided by random. You can modify room name if you want.</li></ul>
+          </li>
+          <li>Click [Get Devices] button, then list of video/audio devices will be made. 
+            <ul>
+              <li>Please allow access to camera / microphone.</li>
+              <li>THEATA V will be selected if exists.</li>
+            </ul>
+          </li>
+          <li>Click [Start Video] button.
+            <ul><li>Video / Audio will be captured, and shown in the browser.</li></ul>
+          </li>
+          <li>Click [Connect] Button.
+            <ul>
+              <li>Connect to SkyWay, then join to the specified room.</li>
+              <li>URL for Oculus Go will be appear below video.</li>
+              <li>Open this URL with Oculus Go browser (or other WebVR ready browser), to watch 360 realtime video. (See next section)</li>
+            </ul>
+          </li>
+          <br />
+          <li>To stop streaming, click [Disconnect] button, then click [Stop Video] button.</li>
+        </ul>
 
+        <h4>Watch 360 realtime video with Oculus Go</h4>
+        <ul>
+          <li>Start Oculus Go browser (or other WebVR ready browser).</li>
+          <li>Open the URL which shown in the streaming PC.
+            <ul><li>
+              It is better to bookmark <a target="_blank" href="https://mganeko.github.io/aframe/go.html&room=">https://mganeko.github.io/aframe/go.html&amp;room=</a> in advance. Then add room name at the end of URL.
+            </li></ul>
+          </li>
+          <li>Loading will take a while.
+              <ul><li>When A-FRAME is ready, a message will appear in the center of browser window.</li></ul>
+          </li>
+          <li>Click the browser windows (point and trigger Oculus Go controller).
+            <ul>
+              <li>Connect to SkyWay, then join to the specified room.</li>
+              <li>360 realtime video form the PC will be played in Oculus Go Browser.</li>
+            </ul>
+          </li>
+          <li>Click VR mode button at the right bottom corner (point and trigger Oculus Go controller), then enter 360 VR mode.
+            <ul><li>You can look around with Oculus Go.</li></ul>
+          </li>
+          <br />
+          <li>To exit 360 VR mode, push [back] button of Oculus Go controller.</li>
+          <li>To disconnect from Skyway, please reload or move to other page.</li>
+        </ul>
+     
         <h3>Source code / ソーコード</h3>
         GitHub ... <a target="_blank" href="https://github.com/mganeko/aframe">https://github.com/mganeko/aframe</a>
         <ul>
