@@ -15,24 +15,24 @@
 
 Realtime video streaming sample over WebRTC. Using following porducts, service, library.
 
-* 360 Camera ... [RICHO THETA V](https://theta360.com/en/about/theta/v.html)
+* 360 Camera ... [RICOH THETA V](https://theta360.com/en/about/theta/v.html)
 * WebRTC Platform ... [SkyWay](https://webrtc.ecl.ntt.com/en/)
 * WebVR Device/Browser ... [Oculus Go](https://www.oculus.com/go/) Browser
 * WebVR library ... [A-FRAME](https://aframe.io)
 
 WebRTCを利用した360リアルタイム動画通信です。下記の製品、サービス、ライブラリを利用しています
 
-* 360 カメラ ... [RICHO THETA V](https://theta360.com/ja/about/theta/v.html)
+* 360 カメラ ... [RICOH THETA V](https://theta360.com/ja/about/theta/v.html)
 * WebRTC プラットフォーム ... [SkyWay](https://webrtc.ecl.ntt.com)
 * WebVR デバイス/ブラウザ ... [Oculus Go](https://www.oculus.com/go/) ブラウザ
 * WebVR ライブラリ ... [A-FRAME](https://aframe.io)
 
 ### How to use sample / サンプル操作手順
 
-[GitHub pages](https://mganeko.github.io/aframe/) で試すことができます。RICHO THETA Vと Oculus Go（または他のWebVR ready のブラウザ)が必要です。
+[GitHub pages](https://mganeko.github.io/aframe/) で試すことができます。RICOH THETA Vと Oculus Go（または他のWebVR ready のブラウザ)が必要です。
 
 #### 配信側
-* PC に RICHO THEATA V をUSBで接続、Liveモードに設定
+* PC に RICOH THEATA V をUSBで接続、Liveモードに設定
 * PCのChromeブラウザで、 [https://mganeko.github.io/aframe/pc.html](https://mganeko.github.io/aframe/pc.html) を開く
   * Roomがランダムに割り振られます。変更することも可能です
 * [Get Devices]ボタンをクリックすると、利用可能な Videoデバイス(カメラ)、Audioデバイス(マイク)のリストを取得します
@@ -66,7 +66,7 @@ WebRTCを利用した360リアルタイム動画通信です。下記の製品�
 ### Source code / ソーコード
 
 * https://github.com/mganeko/aframe
-  * [pc.html](https://github.com/mganeko/aframe/blob/master/pc.html) ... Streaming 360 video, with Desktop Chrome and RICHO THETA V
+  * [pc.html](https://github.com/mganeko/aframe/blob/master/pc.html) ... Streaming 360 video, with Desktop Chrome and RICOH THETA V
   * [go.html](https://github.com/mganeko/aframe/blob/master/go.html) ... Watching 360 video, with Oculus Go or other WebVR ready Browsers
 
 
