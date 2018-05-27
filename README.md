@@ -32,12 +32,13 @@ WebRTCを利用した360リアルタイム動画通信です。下記の製品�
 [GitHub pages](https://mganeko.github.io/aframe/) で試すことができます。RICOH THETA Vと Oculus Go（または他のWebVR ready のブラウザ)が必要です。
 
 #### 配信側
-* PC に RICOH THEATA V をUSBで接続、Liveモードに設定
+* PC に RICOH THETA V をUSBで接続、Liveモードに設定
 * PCのChromeブラウザで、 [https://mganeko.github.io/aframe/pc.html](https://mganeko.github.io/aframe/pc.html) を開く
   * Roomがランダムに割り振られます。変更することも可能です
 * [Get Devices]ボタンをクリックすると、利用可能な Videoデバイス(カメラ)、Audioデバイス(マイク)のリストを取得します
   * カメラ、マイクへのアクセスを聞かれるので、許可してください
   * THETA V が見つかれば、自動的に選択されます
+  * THETA V を接続していても検出できない場合は、Chromeを一旦終了して、再度起動して見てください
 * [Start Video] ボタンをクリックしてください
   * 映像と音声が取得され、ブラウザ内に表示されます
 * [Connect] ボタンをクリックしてください
@@ -68,12 +69,13 @@ Please try on [GitHub pages ](https://mganeko.github.io/aframe/).
 You need RICOH THETA V and Oculus Go (or other WebVR ready browser).
 
 #### Stream 360 realtime video from PC
-* Connect RICOH THEATA V to your PC with USB, then start as Live mode.
+* Connect RICOH THETA V to your PC with USB, then start as Live mode.
 * Open with desktop Chrome: [https://mganeko.github.io/aframe/pc.html](https://mganeko.github.io/aframe/pc.html)
   * Room name will be decided by random. You can modify room name if you want.
 * Click [Get Devices] button, then list of video/audio devices will be made.
   * Please allow access to camera / microphone.
-  * THEATA V will be selected if exists.
+  * THETA V will be selected if exists.
+  * If it failed to detect THETA V, pleaset quit and restart Chrome.
 * Click [Start Video] button.
   * Video / Audio will be captured, and shown in the browser.
 * Click [Connect] Button.
