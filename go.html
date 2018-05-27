@@ -150,6 +150,11 @@
     console.info("remote media stop");
   }
 
+  function hideWaitMessage() {
+    const element = document.getElementById("wait_massage");
+    element.style.display = 'none';
+  }
+
   </script>
   <script>
     AFRAME.registerComponent('play-on-window-click', {
@@ -163,6 +168,7 @@
         window.removeEventListener('click', this.onClick);
       },
       onClick: function (evt) {
+        hideWaitMessage();
         joinRoom(null);
         //startMediaAndJoinRoom();
       }
@@ -198,6 +204,7 @@
 </head>
 
 <body>
+  <div id="wait_massage">Please wait for loading ...</div>
   <a-scene>
     <a-assets>
       <video id="video1" autoplay loop crossorigin="anonymous" playsinline webkit-playsinline></video>
@@ -212,8 +219,8 @@
       <a-entity id="msg" position="0 -0.3 -1.5" text="align:center; 
               width:3;
               wrapCount:100;
-              color:red;
-              value:Click window to make the video play, if needed."
+              color: #FF8080;
+              value:Please click window to start 360 video streaming."
               hide-once-playing="#video1">
       </a-entity>
     </a-camera>   
