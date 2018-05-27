@@ -132,6 +132,10 @@
     urlSpan.innerHTML = a;
   }
 
+  function clearGoUrl() {
+    urlSpan.innerHTML = '';
+  }
+
   function joinRoom() {
     const apiKey = getApiKey() || myApiKey;
     if ((! apiKey) || (apiKey === '')) {
