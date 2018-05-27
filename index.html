@@ -7,40 +7,103 @@
        <h1>A-FRAME Samples</h1>
 
         This is a WebVR sample with A-FRAME, mainly for Oculus Go.<br />
-        これは A-Frame を利用した WebVR のサンプルで、Oculus Go を対象にしています。.<br />
+        これは A-Frame を利用した WebVR のサンプルで、Oculus Go を主な対象にしています。<br />
+        GitHub ... <a target="_blank" href="https://github.com/mganeko/aframe">https://github.com/mganeko/aframe</a>
         
         <h2>Confirmed Environment / 動作確認環境 </h2>
-        
-        * Chrome  66 (64-bit) for MacOS X
-        * Oculus Go 
-        
+        <ul>
+          <li>Chrome  66 (64-bit) for MacOS X</li>
+          <li>Oculus Go Browser</li>
+        </ul>
         
         <h2>Samples / サンプル</h2>
         
-        ### 360 realtime video sample / 360度リアルタイム動画
+        <h3>360 realtime video sample / 360度リアルタイム動画</h3>
+        Realtime video streaming sample over WebRTC. Using following porducts, service, library.
+        <ul>
+          <li>360 Camera ... <a target="_blank" href="https://theta360.com/en/about/theta/v.html">RICHO THETA V</a></li>
+          <li>WebRTC Platform ... <a target="_blank" href="https://webrtc.ecl.ntt.com/en/">SkyWay</a></li>
+          <li>WebVR Device/Browser ... <a target="_blank" href="https://www.oculus.com/go/">Oculus Go</a> Browser</li>
+          <li>WebVR library ... <a target="_blank" href="(https://aframe.io">A-FRAME</a></li>
+        </ul>
         
-        * Realtime video streaming sample over WebRTC.
-          * 360 Camera ... RICHO THETA V
-          * WebRTC service ... SkyWay
-          * WebVR Device ... Oculus Go Browser
-          * WebVR Framework ... A-FRAME
-        * WebRTCを利用した360リアルタイム動画通信です
-          * 360度カメラ ... RICHO THETA V
-          * WebRTC サービス ... SkyWay
-          * WebVR デバイス ... Oculus Go ブラウザー
-          * WebVR フレームワーク ... A-FRAME
+        WebRTCを利用した360リアルタイム動画通信です。下記の製品、サービス、ライブラリを利用しています。
+        <ul>
+          <li>360 カメラ ... <a target="_blank" href="https://theta360.com/en/about/theta/v.html">RICHO THETA V</a></li>
+          <li>WebRTC プラットフォーム ... <a target="_blank" href="https://webrtc.ecl.ntt.com/en/">SkyWay</a></li>
+          <li>WebVR デバイス/ブラウザ ... <a target="_blank" href="https://www.oculus.com/go/">Oculus Go</a> ブラウザ</li>
+          <li>WebVR ライブラリ ... <a target="_blank" href="(https://aframe.io">A-FRAME</a></li>
+        </ul>
         
-        ### How to use sample / サンプル操作手順
+        <h3>サンプル操作手順</h3> 
         
-        ### Source code / ソーコード
+        <a target="_blank" href="https://mganeko.github.io/aframe/">GitHub pages (https://mganeko.github.io/aframe/)</a> で試すことができます。<br/>
+        RICHO THETA Vと Oculus Go（または他のWebVR対応のブラウザ)が必要です。
         
-        * https://github.com/mganeko/aframe
+        <h4>配信側</h4>
+        <ul>
+          <li>PC に RICHO THEATA V をUSBで接続、Liveモードに設定</li>
+          <li>PCのChromeブラウザで、 <a target="_blank" href="https://mganeko.github.io/aframe/pc.html">https://mganeko.github.io/aframe/pc.html</a> を開く
+            <ul><li>Roomがランダムに割り振られます。変更することも可能です</li></ul>
+          </li>
+          <li>[Get Devices]ボタンをクリックすると、利用可能な Videoデバイス(カメラ)、Audioデバイス(マイク)のリストを取得します
+            <ul>
+              <li>カメラ、マイクへのアクセスを聞かれるので、許可してください</li>
+              <li>THETA V が見つかれば、自動的に選択されます</li>
+            </ul>
+          </li>
+          <li>[Start Video] ボタンをクリックしてください
+            <ul><li>映像と音声が取得され、ブラウザ内に表示されます</li></ul>
+          </li>
+          <li>[Connect] ボタンをクリックしてください
+            <ul>
+              <li>SkyWay に接続され、指定されたRoomに参加します</li>
+              <li>自分の映像の下に、Oculus Go で接続するためのURLが表示されます</li>
+              <li>このURLを、Oculus Go のブラウザ（あるいは、他のWebVR 対応のブラウザ）で開くと映像を見ることができます</li>
+            </ul>
+          </li>
+          <br />
+          <li>配信を停止する場合には [Disconnect] → [Stop Video] の順にボタンをクリックしてください</li>
+        </ul>
+
+        <h4>視聴側 (Oculus Go)</h4>
+        <ul>
+          <li>Oculus Go のブラウザ（あるいは、他のWebVR 対応のブラウザ）を起動してください</li>
+          <li>配信側で表示されたURLを、ブラウザでアクセスします
+            <ul><li>
+              あらかじめ <a target="_blank" href="https://mganeko.github.io/aframe/go.html&room=">https://mganeko.github.io/aframe/go.html&amp;room=</a> までをブックマークに入れておき、最後にroom名だけ追加すると手間が少なくなるのでお勧めです
+            </li></ul>
+          </li>
+          <li>しばらくロードの時間がかかります
+              <ul><li>A-FRAMEの準備ができたら 中央にメッセージが表示されます</li></ul>
+          </li>
+          <li>画面をクリックしてください（Oculus Goのコントローラーでトリガーを引く）
+            <ul>
+              <li>SkyWay に接続され、指定されたRoomに参加します</li>
+              <li>PCに接続されている THETA V の360ど映像が表示されます</li>
+            </ul>
+          </li>
+          <li>右下の VRモードボタンをクリックすると、360度モードになります（カーソルを合わせてOculus Goのコントローラーでトリガーを引く）
+            <ul><li>自分の頭の向いている方向に応じて、映像の見える方向が変わります</li></ul>
+          </li>
+          <br />
+          <li>360度モードを抜けるには コントローラの[戻る]ボタンを押します</li>
+          <li>Skywayの接続を切る処理は未実装です。リロードするか、他のページに移動してください</li>
+        </ul>
         
-        
-        ## License / ライセンス
-        
-        * This sample is under the MIT license
-        * このサンプルはMITランセンスで提供されます
+
+        <h3>Source code / ソーコード</h3>
+        GitHub ... <a target="_blank" href="https://github.com/mganeko/aframe">https://github.com/mganeko/aframe</a>
+        <ul>
+          <li><a target="_blank" href="https://github.com/mganeko/aframe/blob/master/pc.html">pc.html</a> ... Streaming 360 video, with Desktop Chrome and RICHO THETA V</li>
+          <li><a target="_blank" href="https://github.com/mganeko/aframe/blob/master/go.html">go.html</a> ... Watching 360 video, with Oculus Go or other WebVR ready Browsers</li>
+        </ul>
+
+        <h3>License / ライセンス</h3>
+        <ul>
+          <li>This sample is under the MIT license</li>
+          <li>このサンプルはMITランセンスで提供されます</li>
+        </ul>
         
         
     </body>
