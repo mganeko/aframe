@@ -88,7 +88,7 @@ You need RICOH THETA V and Oculus Go (or other WebVR ready browser).
 #### Watch 360 realtime video with Oculus Go
 * Start Oculus Go browser (or other WebVR ready browser).
 * Open the URL which shown in the streaming PC.
-  * It is better to bookmark [https://mganeko.github.io/aframe/go.html&room=](https://mganeko.github.io/aframe/go.html&room=) in advance. Then add room name at the end of URL.
+  * It is better to bookmark [https://mganeko.github.io/aframe/go.html?room=](https://mganeko.github.io/aframe/go.html?room=) in advance. Then add room name at the end of URL.
 * Loading will take a while.
   * When A-FRAME is ready, a message will appear in the center of browser window.
 * Click the browser windows (point and trigger Oculus Go controller).
