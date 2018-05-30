@@ -53,6 +53,7 @@ WebRTCを利用した360リアルタイム動画通信です。下記の製品�
 * Oculus Go のブラウザ（あるいは、他のWebVR 対応のブラウザ）を起動してください
 * 配信側で表示されたURLを、ブラウザでアクセスします
   * あらかじめ [https://mganeko.github.io/aframe/go.html?room=](https://mganeko.github.io/aframe/go.html?room=) までをブックマークに入れておき、最後にroom名だけ追加すると手間が少なくなるのでお勧めです
+  * または [https://mganeko.github.io/aframe/g.html](https://mganeko.github.io/aframe/g.html) を経由してroom名を入力後、[送信]ボタンをクリックすることも可能です。
 * しばらくロードの時間がかかります
   * A-FRAMEの準備ができたら 中央にメッセージが表示されます
 * 画面をクリックしてください（Oculus Goのコントローラーでトリガーを引く）
@@ -89,6 +90,7 @@ You need RICOH THETA V and Oculus Go (or other WebVR ready browser).
 * Start Oculus Go browser (or other WebVR ready browser).
 * Open the URL which shown in the streaming PC.
   * It is better to bookmark [https://mganeko.github.io/aframe/go.html?room=](https://mganeko.github.io/aframe/go.html?Sroom=) in advance. Then add room name at the end of URL.
+  * Or, open [https://mganeko.github.io/aframe/g.html](https://mganeko.github.io/aframe/g.html) and type room name, then submit.
 * Loading will take a while.
   * When A-FRAME is ready, a message will appear in the center of browser window.
 * Click the browser windows (point and trigger Oculus Go controller).
