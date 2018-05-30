@@ -45,7 +45,8 @@
   <div>
     <video id="local_video" autoplay style="width: 320px; height: 180px; border: 1px solid black;"></video>
   </div>
-  Please connect with Oculus Go Browser: <span id="oculus_url"></span>
+  Please connect with Oculus Go Browser: <span id="oculus_url"></span><br />
+  <span id="jumb_page"></span>
   <div id="container">
   </div>
   <!--
@@ -130,6 +131,12 @@
     const goUrl = currentUrl.substr(0, pos + 1) + 'go.html?room=' + roomname;
     const a = '<a target="_blank" href="' + goUrl + '">' + goUrl + '</a>';
     urlSpan.innerHTML = a;
+
+    const jupmSpan = document.getElementById('jumb_page');
+    const jumpUrl = currentUrl.substr(0, pos + 1) + 'g.html';
+    let str = 'Or, please open ' + '<a target="_blank" href="' + jumpUrl + '">' + jumpUrl + '</a>';
+    str = str + ' with Oculus Go Browser and type room: "' + roomname + '" , then submit.';
+    jupmSpan.innerHTML = str;
   }
 
   function clearGoUrl() {
@@ -144,6 +151,8 @@
       return;
     }
     const roomName = getRoomName() || defaultRoomName;
+  showGoUrl(roomName);
+  return;
 
     peer = new Peer({key: apiKey, debug: 1});
     peer.on('open',function() {
