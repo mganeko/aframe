@@ -151,8 +151,6 @@
       return;
     }
     const roomName = getRoomName() || defaultRoomName;
-  showGoUrl(roomName);
-  return;
 
     peer = new Peer({key: apiKey, debug: 1});
     peer.on('open',function() {
