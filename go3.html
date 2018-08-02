@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>360Go Skyway</title>
+  <meta name="description" content="360 Video — A-Frame">
+  <!-- NG
+  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+   -->
+  <!-- OK
+  <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+  // 0.6.1, 0.7.0, 0.7.1 OK (0.7.2, 0.7.5 NO exist)
+  -->
+  <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+  <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script>
+    function _assert(desc, v) {
+      if (v) {
+        return;
+      }
+      else {
+        let caller = _assert.caller || 'Top level';
+        console.error('ASSERT in %s, %s is :', caller, desc, v);
+      }
+    }
+
+    function _logStream(stream) {
+      console.log(msg + ': id=' + stream.id);
+      const videoTracks = stream.getVideoTracks();
+      if (videoTracks) {
+        console.log('videoTracks.length=' + videoTracks.length);
+        for (let i = 0; i < videoTracks.length; i++) {
+          const track = videoTracks[i];
+          console.log('track.id=' + track.id);
+        }
+      }
+
+      const audioTracks = stream.getAudioTracks();
+      if (audioTracks) {
+        console.log('audioTracks.length=' + audioTracks.length);
+        for (let i = 0; i < audioTracks.length; i++) {
+          const track = audioTracks[i];
+          console.log('track.id=' + track.id);
+        }
+      }
+    }
+  </script>
+  <script type="text/javascript">
+  // ----- use skyway room ----
+  let myApiKey = '4ff0a85b-4015-4e8b-94f6-4fab24c759e0'; //null; // set your API key
+  let peer = null;
+  let meshRoom = null;
+  const defaultRoomName = '_oculusgo_test_room';
+
+  function getApiKey() {
+    let key = document.getElementById('api_key_text').value;
+    return key;
+  }
+
+  function getApiKeyFromURL() {
+    const search = window.location.search;
+    const re = new RegExp('apikey=([^&=]+)');
+    const results = re.exec(search);
+    if (results) {
+      //document.getElementById('api_key_text').value = results[1];
+      return results[1];
+    }
+
+    return null;
+  }
+
+  function getRoomFromURL() {
+    const search = window.location.search;
+    const re = new RegExp('room=([^&=]+)');
+    const results = re.exec(search);
+    if (results) {
+      //document.getElementById('roomname_text').value = results[1];
+      return results[1];
+    }
+  }
+
+  let localStream = null;
+  function startMediaAndJoinRoom() {
+    const mediaConstraints = {video: false, audio: true};
+    navigator.mediaDevices.getUserMedia(mediaConstraints)
+    .then( stream => {
+      _logStream(stream);
+      localStream = stream;
+      joinRoom(stream);
+    })
+    .catch ( err => {
+      console.error('getUserMedia ERROR:', err );
+    })
+  }
+
+  function joinRoom(stream) {
+    let apiKey = getApiKeyFromURL() || myApiKey;
+    if ((! apiKey) || (apiKey === '')) {
+      alert('Please set your API Key');
+      return;
+    }
+    const roomName = getRoomFromURL() || defaultRoomName;
+
+    peer = new Peer({key: apiKey, debug: 1});
+    peer.on('open',function() {
+      console.log('--open--');
+      //meshRoom = peer.joinRoom(roomName, {mode: 'mesh', stream: localStream});
+      if (stream) {
+        meshRoom = peer.joinRoom(roomName, {mode: 'mesh', stream: stream});
+      }
+      else {
+        meshRoom = peer.joinRoom(roomName, {mode: 'mesh'});
+      }
+      meshRoom.on('open', function() {
+        console.log('joined the room:' + roomName);
+      });
+      meshRoom.on('stream', function(stream) {
+        let remoteId = stream.peerId;
+        attachVideo(remoteId, stream);
+      });
+      meshRoom.on('peerLeave', function(peerId) {
+        detachVideo(peerId);
+      });
+    });
+
+    // -- kick to play in iOS 11 Safari --
+    //setTimeout(playAllRemoteVideo, 1000);
+  }
+
+  function leaveRoom() {
+    if (meshRoom) {
+       meshRoom.close();
+    }
+
+    detachVideo('_any_');
+  }
+
+  function attachVideo(id, stream) {
+    const videoElement = document.getElementById("video1");
+    videoElement.srcObject = stream;
+    videoElement.play();
+    console.info("remote media start");
+  }
+
+  function detachVideo(id) {
+    const videoElement = document.getElementById("video1");
+    videoElement.pause();
+    videoElement.srcObject = null;
+    console.info("remote media stop");
+  }
+
+  function hideWaitMessage() {
+    const element = document.getElementById("wait_massage");
+    element.style.display = 'none';
+  }
+
+  </script>
+  <script>
+    /*
+    AFRAME.registerComponent('play-on-window-click', {
+      init: function () {
+        this.onClick = this.onClick.bind(this);
+      },
+      play: function () {
+        window.addEventListener('click', this.onClick);
+      },
+      pause: function () {
+        window.removeEventListener('click', this.onClick);
+      },
+      onClick: function (evt) {
+        hideWaitMessage();
+        joinRoom(null);
+        //startMediaAndJoinRoom();
+      }
+    });
+    */
+
+    /*
+    AFRAME.registerComponent('hide-once-playing', {
+      schema: {type: 'selector'},
+      init: function () {
+        this.onPlaying = this.onPlaying.bind(this);
+        this.onPause = this.onPause.bind(this);
+      },
+      play: function () {
+        if (this.data) {
+          this.data.addEventListener('playing', this.onPlaying);
+          this.data.addEventListener('pause', this.onPause);
+        }
+      },
+      pause: function () {
+        if (this.data) {
+          this.data.removeEventListener('playing', this.onPlaying);
+          this.data.removeEventListener('pause', this.onPause);
+        }
+      },
+      onPlaying: function (evt) {
+        this.el.setAttribute('visible', false);
+      },
+      onPause: function (evt) {
+        this.el.setAttribute('visible', true);
+      }
+    });
+    */
+
+  </script>
+</head>
+
+<body>
+  <div id="wait_massage">Please wait for loading ...</div>
+  <a-scene>
+    <a-assets>
+      <video id="video1" autoplay loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+    </a-assets>
+    <a-videosphere src="#video1" rotation="0 180 0"
+      play-on-window-click
+    >
+    </a-videosphere>
+
+    <a-camera user-height="0" wasd-controls-enabled="false" arrow-key-rotation>
+      <!-- Text element for display messaging.  Hide once video is playing. -->
+      <a-entity id="msg" position="0 -0.3 -1.5" text="align:center; 
+              width:3;
+              wrapCount:100;
+              color: #FF8080;
+              value:Please click window to start 360 video streaming."
+              hide-once-playing="#video1">
+      </a-entity>
+    </a-camera>   
+
+  </a-scene>
+</body>
+<script type="text/javascript">
+  //joinRoom();
+  
+    AFRAME.registerComponent('play-on-window-click', {
+      init: function () {
+        this.onClick = this.onClick.bind(this);
+      },
+      play: function () {
+        window.addEventListener('click', this.onClick);
+      },
+      pause: function () {
+        window.removeEventListener('click', this.onClick);
+      },
+      onClick: function (evt) {
+        hideWaitMessage();
+        joinRoom(null);
+        //startMediaAndJoinRoom();
+      }
+    });
+
+    AFRAME.registerComponent('hide-once-playing', {
+      schema: {type: 'selector'},
+      init: function () {
+        this.onPlaying = this.onPlaying.bind(this);
+        this.onPause = this.onPause.bind(this);
+      },
+      play: function () {
+        if (this.data) {
+          this.data.addEventListener('playing', this.onPlaying);
+          this.data.addEventListener('pause', this.onPause);
+        }
+      },
+      pause: function () {
+        if (this.data) {
+          this.data.removeEventListener('playing', this.onPlaying);
+          this.data.removeEventListener('pause', this.onPause);
+        }
+      },
+      onPlaying: function (evt) {
+        this.el.setAttribute('visible', false);
+      },
+      onPause: function (evt) {
+        this.el.setAttribute('visible', true);
+      }
+    });
+
+</script>
+</html>
